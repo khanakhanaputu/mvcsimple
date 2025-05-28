@@ -4,6 +4,6 @@ class namaeController extends Model
 {
     public function methodsaya()
     {
-        echo "method sudah terpanggil";
+        $this->getAll("namatableee");
     }
 }
