@@ -1,0 +1,34 @@
+# RewriteEngine On
+
+# # 1. Redirect URL dengan trailing slash ke versi tanpa slash (kecuali root /)
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_URI} ^(.+)/$
+# RewriteRule ^ %1 [R=301,L]
+
+# # 2. Bypass jika request adalah file atau direktori yang ada
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+
+# # 3. Redirect semua request ke index.php
+# RewriteRule ^(.*)$ index.php?request=$1 [L,QSA]
+
+RewriteEngine On
+
+# 1. Redirect trailing slash ke versi tanpa slash (kecuali root /)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteRule ^ %1 [R=301,L]
+
+# 2. Bypass kalau file atau folder ada
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Tolak request kalau ada karakter aneh, kecuali root
+RewriteCond %{REQUEST_URI} !^/$
+RewriteCond %{REQUEST_URI} [^a-zA-Z0-9/_\-]
+RewriteRule ^ - [F]
+
+# 4. Lempar request ke index.php
+RewriteRule ^(.*)$ index.php?request=$1 [L,QSA]
+
