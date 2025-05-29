@@ -26,15 +26,11 @@ class Model extends Database
         // Ambil satu data berdasarkan ID
         $query = "SELECT * FROM $table WHERE $field='$id'";
         $result =  mysqli_query($this->connect, $query);
-        $data = [];
         if (mysqli_num_rows($result) > 0) {
-            while ($rows = mysqli_fetch_assoc($result)) {
-                $data[] = $rows;
-            }
+            return mysqli_fetch_assoc($result);
         } else {
             return "data not found";
         }
-        return $data;
     }
 
     public function create($table, ...$data)
