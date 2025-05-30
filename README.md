@@ -283,7 +283,15 @@ class ApiController extends Model
 >[!TIP]
 >Pastikan mengerti Controller dan model, maka anda bisa mengerti ini
 
+# Random fature
 
+#### Ganti title halaman
+
+Bisa ditaruh di controller ataupun di view, rekomendasinya sih di controller, dalem method yang kamu ada panggil viewnya
+
+```php
+changeTitle("nama title")
+```
 
 # Middleware komingsun, i need sleep bro
 # Adios
