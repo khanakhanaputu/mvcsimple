@@ -85,7 +85,7 @@ Singkat aja, jadi controller ini buat nyimpen logic dari apa yang KAU lakuin.
 ```php
 <?php
 
-class namaController {
+class NamaController {
     public function index() {
         echo "hello world";
     }
@@ -95,7 +95,7 @@ Format penamaan adalah __namaController__
   
 **Contoh**
 ```php
-loginController
+LoginController
 ```
 >[!WARNING]
 >Pastiin jangan typo yh bg
@@ -107,7 +107,7 @@ loginController
 ```php
 <?php
 
-class namaeController {
+class NamaController {
     public function methodsaya(){
         echo "hello world";
     }
@@ -133,7 +133,7 @@ hello world
 ```php
 <?php
 
-class namaeController {
+class NamaController {
     public function methodsaya($data){
         echo "hello $data";
     }
@@ -172,7 +172,7 @@ Model sudah ada templatenya jadi gaperlu bikin query lagi, tapi emang perlu yang
 ```php
 <?php
 include_once("models/Model.model.php");
-class namaeController extends Model
+class NamaController extends Model
 {
     public function methodsaya()
     {
