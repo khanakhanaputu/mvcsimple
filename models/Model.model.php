@@ -42,7 +42,7 @@ class Model extends Database
             }
             mysqli_query($this->connect, $query);
         } catch (\Throwable $th) {
-            echo "erro masse";
+            echo "erro mass";
         }
     }
 
