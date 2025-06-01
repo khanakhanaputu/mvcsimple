@@ -80,7 +80,7 @@ Hello john
 ---
 # Controller
 Singkat aja, jadi controller ini buat nyimpen logic dari apa yang KAU lakuin.  
-
+Default target dari route pada controller adalah index ( mirip macam index.php/index.html )
 ## Cara bikin
 ```php
 <?php
