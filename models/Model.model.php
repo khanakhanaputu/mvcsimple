@@ -21,32 +21,47 @@ class Model extends Database
         return $data;
     }
 
-    public function getById($table, $field, $id)
+    public function getAllById($table, $field, $id)
     {
-        // Ambil satu data berdasarkan ID
+        $query = "SELECT * FROM $table WHERE $field='$id' ";
+        $result =  mysqli_query($this->connect, $query);
+        $data = [];
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+    public function getSingleById($table, $field, $id)
+    {
         $query = "SELECT * FROM $table WHERE $field='$id'";
         $result =  mysqli_query($this->connect, $query);
         if (mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result);
         } else {
-            return "data not found";
+            return false;
         }
     }
-
     public function create($table, ...$data)
     {
-        try {
-            foreach ($data as $rows) {
-                $datanya = implode(",", $rows);
-                $query = "INSERT INTO $table VALUES (" . $datanya . ")";
-            }
-            mysqli_query($this->connect, $query);
-        } catch (\Throwable $th) {
-            echo "erro mass";
-        }
-    }
 
-    public function update($table, $field, $data, $target, $target_value)
+        foreach ($data as $rows) {
+            $datanya = implode(",", $rows);
+            $query = "INSERT INTO $table VALUES (" . $datanya . ")";
+        }
+        mysqli_query($this->connect, $query);
+    }
+    public function createSpecify($table, ...$args)
+    {
+        $target = implode(",", $args[0]);
+        $data = implode(",", $args[1]);
+        $query = "INSERT INTO $table ($target) VALUES ($data)";
+        mysqli_query($this->connect, $query);
+    }
+    public function updateSingle($table, $field, $data, $target, $target_value)
     {
         // Update data berdasarkan ID
         $query = "UPDATE $table SET $field='$data' WHERE $target='$target_value'";
@@ -59,7 +74,7 @@ class Model extends Database
     public function delete($table, $target, $target_value)
     {
         // Hapus data berdasarkan ID
-        $query = "DELETE * FROM $table WHERE $target='$target_value'";
+        $query = "DELETE FROM $table WHERE $target='$target_value'";
         $result = mysqli_query($this->connect, $query);
         if (!$result) {
             echo "error";
