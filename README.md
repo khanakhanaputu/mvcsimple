@@ -1,3 +1,5 @@
+![alt text](https://github.com/khanakhanaputu/mvcsimple/blob/main/framework%20logo.png)
+
 # MVCsimple
 
 Buat yang dilarang pake framework pas disuruh bikin project php.
